@@ -1,0 +1,201 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Registration</title>
+</head>
+<body>
+  <h2>User Registration</h2>
+  <form id="registrationForm">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username"><br>
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email"><br>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password"><br><br>
+    <button type="submit">Register</button>
+  </form>
+
+  <script>
+    // Initialize empty array to store user data
+    let users = [];
+
+    // Function to handle form submission
+    function handleSubmit(event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Get form values
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      // Create user object
+      const user = {
+        username,
+        email,
+        password
+      };
+
+      // Push user object to array
+      users.push(user);
+
+      // Store users array in local storage
+      localStorage.setItem('users', JSON.stringify(users));
+
+      // Redirect to new page to display data
+      window.location.href = '';
+    }
+
+    // Add event listener to form submit
+    document.getElementById('registrationForm').addEventListener('submit', handleSubmit);
+  </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet  integrity="
+    sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <title>Document</title>
+  <style>
+    body {
+      background-color: rgb(106, 137, 127);
+      padding-top: 15px;
+    }
+
+    .container {
+      max-width: 1000px;
+      background-color: #fff;
+      margin-top: 8px;
+      background-image: linear-gradient(45deg, #ffffff, #8e9a57);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>User Registration form</h2>
+    <form class="row g-3" id="registrationForm">
+      <!-- g3 for gutter spacing within columns  -->
+      <div class="col-md-6">
+        <label for="fname" class="form-label">FirstName</label>
+        <input type="text" class="form-control" id="fname" required>
+      </div>
+      <div class="col-md-6">
+        <label for="lname" class="form-label">LastName</label>
+        <input type="text" class="form-control" id="lname" required>
+      </div>
+      <div class="col-md-12">
+        <label for="email" class="form-label">Email</label>
+        <input type="text" class="form-control" id="email" required>
+      </div>
+      <div class="col-md-6">
+        <input type="date" class="form-control" id="date" placeholder="date">
+      </div>
+<!-- drop down menu -->
+      <div class="col-md-6" id="bloodGrp">
+        <select>
+          <option selected> Select your blood group</option>
+          <option>A+</option>
+          <option>B+</option>
+          <option>AB+</option>
+          <option>O+</option>
+          <option>A-</option>
+          <option>B-</option>
+          <option>O-</option>
+          <option>AB-</option>
+        </select>
+      </div>
+
+      <div class="col-md-12">
+        <p>Gender</p>
+        <input type="radio" name="gender">
+        <label for="male">Male</label>
+        <input type="radio" name="gender">
+        <label for="female">Female</label>
+      </div>
+
+      <div class="col-md-12">
+        <label class="form-label"><b>Which programming languages do you know?</b></label><br>
+        <input type="checkbox" class="form-check-input" name="checkbox" id="cpp">
+        <label for="cpp">CPP</label>
+        <input type="checkbox" class="form-check-input" name="checkbox" id="java">
+        <label for="java">Java</label>
+        <input type="checkbox" class="form-check-input" name="checkbox" id="python">
+        <label for="python">Python</label>
+      </div>
+
+      <div class="col-12" >
+        <button type="submit" class="btn btn-primary">Register</button>
+      </div>
+
+    </form>
+  </div>
+
+
+  <script>
+    document.getElementById("registrationForm").addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      var fname = document.getElementById("fname").value;
+      var lname = document.getElementById("lname").value;
+      var email = document.getElementById("email").value;
+      var date = document.getElementById("date").value;
+      var bloodGrp = document.getElementById("bloodGrp").value;
+      var gender;
+      var genderRadios = document.getElementsByName("gender");
+      for (var i = 0; i < genderRadios.length; i++) {
+        if (genderRadios[i].checked) {
+          gender = genderRadios[i].value;
+          break;
+        }
+      }
+      var cpp = document.getElementById("cpp").checked;
+      var java = document.getElementById("java").checked;
+      var python = document.getElementById("python").checked;
+
+      var userData = {
+        fname: fname,
+        lname: lname,
+        email: email,
+        date: date,
+        bloodGrp: bloodGrp,
+        gender: gender,
+        languages: {
+          cpp: cpp,
+          java: java,
+          python: python
+        }
+
+      };
+
+      var users = JSON.parse(localStorage.getItem('users')) || [];
+
+      users.push(userData);
+
+      localStorage.setItem('users', JSON.stringify(users));
+
+      window.location.href = 'displayPract.html';
+
+    });
+  </script>
+</body>
+
+</html>
